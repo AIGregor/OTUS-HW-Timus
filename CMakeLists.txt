@@ -28,6 +28,9 @@ add_executable(T2012  Timus-2012.cpp)
 add_executable(T2023  Timus-2023.cpp)
 add_executable(T2066  Timus-2066.cpp)
 add_executable(T2100  Timus-2100.cpp)
+add_executable(T1837  Timus-1837.cpp)
+add_executable(T1496  Timus-1496.cpp)
+add_executable(T1545  Timus-1545.cpp)
 add_executable(OTUS3 OTUS-3.cpp)
 
 set_target_properties(	Otus-HW2
@@ -56,6 +59,9 @@ set_target_properties(	Otus-HW2
 						T2023
 						T2066
 						T2100
+						T1837
+						T1496
+						T1545
 			PROPERTIES
         CXX_STANDARD 14
         CXX_STANDARD_REQUIRED ON
