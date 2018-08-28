@@ -1,7 +1,8 @@
 #include <iostream>
 #include <map>
-#include <deque>
+#include <vector>
 #include <string>
+#include <set>
 #include <array>
 
 const std::string Isenbaev("Isenbaev");
@@ -11,11 +12,21 @@ bool find_Isenbaev(std::array<std::string, 3>& team)
 	if (team[0].compare(Isenbaev) == 0 ||
 		team[1].compare(Isenbaev) == 0 ||
 		team[2].compare(Isenbaev) == 0)
-	{
 		return true;
-	}
-	
+
 	return false;
+}
+
+int find_team(const std::string& surname, std::vector<std::array<std::string, 3>>& teams)
+{	
+	for (int i=0; i < teams.size(); ++i)
+	{
+		if (teams[i][0].compare(surname) == 0 ||
+			teams[i][1].compare(surname) == 0 ||
+			teams[i][2].compare(surname) == 0)
+			return i;
+	}
+	return -1;
 }
 
 int main()
@@ -23,8 +34,9 @@ int main()
 	using namespace std;
 	
 	array<string, 3> surname;
-	deque<array<string, 3>> teams;
-	
+	vector<array<string, 3>> teams;
+	set<string> surnames;
+
 	map<string, int> people;
 	int teamNum = 0;	
 	int count = 0;
@@ -34,49 +46,43 @@ int main()
 	{
 		cin >> surname[0] >> surname[1] >> surname[2];
 		
-		bool hasIsenPos = find_Isenbaev(surname);
+		if (find_Isenbaev(surname))
+			people[Isenbaev] = 0;
 
-		if (hasIsenPos)
-		{			
-			surname[0].compare(Isenbaev) == 0 ? people[surname[0]] = 0 : people[surname[0]] = 1;
-			surname[1].compare(Isenbaev) == 0 ? people[surname[1]] = 0 : people[surname[1]] = 1;
-			surname[2].compare(Isenbaev) == 0 ? people[surname[2]] = 0 : people[surname[2]] = 1;
-		}
-		else
-		{
-			teams.push_back(surname);
-		}
+		teams.push_back(surname);		
 		++count;
 	}
 
-	for (auto team : teams)
+	surnames.insert(Isenbaev);
+	while (surnames.size() > 0)
 	{
-		bool isInMap = false;
-		auto surnameInMap = team[0];
-		
-		for (auto surname : team)
+		set<string> temp;
+		for (std::set<string>::iterator it = surnames.begin(); it != surnames.end(); ++it)
 		{
-			auto findSurname = people.find(surname);
-			if (findSurname != people.end())
+			auto surname = people.find(*it);			
+			int teams_id = find_team(*it, teams);
+
+			while (teams_id != -1)
 			{
-				isInMap = true;
-				surnameInMap = surname;
-				break;
+				for (const string &man : teams[teams_id])
+				{
+					if (people.find(man) == people.end())
+					{
+						people[man] = surname->second + 1;
+						temp.insert(man);
+					}
+				}
+				teams.erase(teams.begin() + teams_id);
+				teams_id = find_team(*it, teams);
 			}
 		}
-		for (auto surname : team)
-		{			
-			if (isInMap)
-			{
-				if (people.find(surname) == people.end())
-					people[surname] = people[surnameInMap] + 1;
-			}
-			else
-			{
-				people[surname] = -1;
-			}
-		}
+		surnames = temp;		
 	}
+
+	if (teams.size() > 0)
+		for (auto &team : teams)		
+			for (auto &surname : team)			
+				people[surname] = -1;			
 
 	for (auto surname : people)
 	{
