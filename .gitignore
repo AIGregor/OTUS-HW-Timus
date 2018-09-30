@@ -3,3 +3,18 @@
 ################################################################################
 
 *.vcxproj
+/Timus_sln/cmake_install.cmake
+/Timus_sln/CMakeFiles/3.12.0/CompilerIdC/Debug/CompilerIdC.tlog/CL.write.1.tlog
+/Timus_sln/CMakeFiles/3.12.0/CompilerIdC/Debug/CompilerIdC.tlog/CL.read.1.tlog
+/Timus_sln/CMakeFiles/3.12.0/CompilerIdC/Debug/CompilerIdC.tlog/CL.command.1.tlog
+/Timus_sln/CMakeFiles/3.12.0/CompilerIdC/Debug/CMakeCCompilerId.obj
+/Timus_sln/CMakeFiles/3.12.0/CompilerIdC/CompilerIdC.exe
+/Timus_sln/CMakeFiles/3.12.0/CompilerIdC/CMakeCCompilerId.c
+/Timus_sln/CMakeFiles/3.12.0/CMakeSystem.cmake
+/Timus_sln/CMakeFiles/3.12.0/CMakeRCCompiler.cmake
+/Timus_sln/CMakeFiles/3.12.0/CMakeDetermineCompilerABI_CXX.bin
+/Timus_sln/CMakeFiles/3.12.0/CMakeDetermineCompilerABI_C.bin
+/Timus_sln/CMakeFiles/3.12.0/CMakeCXXCompiler.cmake
+/Timus_sln/CMakeFiles/3.12.0/CMakeCCompiler.cmake
+/Timus_sln/CMakeCache.txt
+/Timus_sln/ALL_BUILD.vcxproj.filters
